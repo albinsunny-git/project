@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Commands Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff6e40, #ffd740);
+            color: #2b2b2b;
+        }
+
+        header {
+            background: linear-gradient(to right, #ff8c00, #ff4081);
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 5px solid #ff6e40;
+        }
+
+        .introduction {
+            padding: 20px;
+            background: #fff3e0;
+            border-bottom: 2px solid #ffcc80;
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #4e342e;
+        }
+
+        nav {
+            background: #ffcc80;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #2b2b2b;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #ffab40;
+            color: #ffffff;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .command-card {
+            background: #ffffff;
+            border: 2px solid #ff6e40;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .command-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .command-card h2 {
+            color: #ff6e40;
+        }
+
+        .fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .fullscreen.active {
+            display: flex;
+        }
+
+        .fullscreen h1 {
+            color: #ff6e40;
+            margin-bottom: 20px;
+        }
+
+        .fullscreen img {
+    max-width: 100%;
+    margin: 20px auto;
+    text-align: center;
+    display: block;
+    border-radius: 10px;
+}
+
+        
+
+        .fullscreen button {
+            background-color: #ff6e40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .fullscreen button:hover {
+            background-color: #ff4081;
+        }
+    </style>
+</head>
+<body>
+    <header>Linux Commands Guide</header>
+
+    <section class="introduction">
+    <p>Welcome to the <strong>Linux Commands Guide</strong>! This page is designed to help you understand some of the most commonly used Linux commands. 
+    Whether you're a beginner or an advanced user, mastering these commands will improve your efficiency and productivity on the command line.</p>
+    <p style="background-color: #ffeb3b; padding: 10px; border-radius: 5px; font-weight: bold;">
+        Click on any command below to explore its usage, examples, and practical applications in detail. Happy learning!
+    </p>
+</section>
+
+
+    <nav>
+        <a href="#find" onclick="showCommand('find')">find</a>
+        <a href="#tar" onclick="showCommand('tar')">tar</a>
+        <a href="#gzip" onclick="showCommand('gzip')">gzip</a>
+        <a href="#gunzip" onclick="showCommand('gunzip')">gunzip</a>
+        <a href="#zip" onclick="showCommand('zip')">zip</a>
+        <a href="#chmod" onclick="showCommand('chmod')">chmod</a>
+        <a href="#chown" onclick="showCommand('chown')">chown</a>
+        <a href="#chgrp" onclick="showCommand('chgrp')">chgrp</a>
+        <a href="#ps" onclick="showCommand('ps')">ps</a>
+    </nav>
+
+    <div class="container">
+        <div class="command-card" onclick="showCommand('find')">
+            <h2>find</h2>
+            <p>Search for files and directories.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('tar')">
+            <h2>tar</h2>
+            <p>Archives files and directories.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('gzip')">
+            <h2>gzip</h2>
+            <p>Compress files.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('gunzip')">
+            <h2>gunzip</h2>
+            <p>Decompress gzip files.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('zip')">
+            <h2>zip</h2>
+            <p>Create ZIP files.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('chmod')">
+            <h2>chmod</h2>
+            <p>Change file permissions.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('chown')">
+            <h2>chown</h2>
+            <p>Change file ownership.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('chgrp')">
+            <h2>chgrp</h2>
+            <p>Change group ownership.</p>
+        </div>
+        <div class="command-card" onclick="showCommand('ps')">
+            <h2>ps</h2>
+            <p>View running processes.</p>
+        </div>
+    </div>
+
+    <div class="fullscreen" id="fullscreen-view">
+        <button onclick="closeFullscreen()">Go Back</button>
+        <h1 id="command-title"></h1>
+        <p id="command-description"></p>
+        <img id="command-image" src="" alt="Example">
+    </div>
+
+    <script>
+        const commandDetails = {
+            find: {
+                title: "find",
+                description: "The find command in Linux is a powerful utility used to search for files and directories based on various criteria such as name, type, size, modification time, permissions, and more.\n Example: <code>find /home -name 'example.txt'</code>",
+                image: "find.png"
+            },
+            tar: {
+                title: "tar",
+                description: "Archives files and directories. Example: <code>tar -cvf archive.tar /home/user</code>",
+                image: "tar.png"
+            },
+            gzip: {
+                title: "gzip",
+                description: "Compress files using gzip. Example: <code>gzip file.txt</code>",
+                image: "gzip.png"
+            },
+            gunzip: {
+                title: "gunzip",
+                description: "Decompress gzip files. Example: <code>gunzip file.txt.gz</code>",
+                image: "gunzip.png"
+            },
+            zip: {
+                title: "zip",
+                description: "Create ZIP files. Example: <code>zip archive.zip file1 file2</code>",
+                image: "zip.png"
+            },
+            chmod: {
+                title: "chmod",
+                description: "Change file permissions. Example: <code>chmod 755 script.sh</code>",
+                image: "chmod.png"
+            },
+            chown: {
+                title: "chown",
+                description: "Change file ownership. Example: <code>chown user:group file.txt</code>",
+                image: "chown.png"
+            },
+            chgrp: {
+                title: "chgrp",
+                description: "Change group ownership. Example: <code>chgrp staff file.txt</code>",
+                image: "chgrp.png"
+            },
+            ps: {
+                title: "ps",
+                description: "View running processes. Example: <code>ps aux</code>",
+                image: "ps.png"
+            }
+        };
+
+        function showCommand(command) {
+            const details = commandDetails[command];
+            document.getElementById('command-title').innerHTML = details.title;
+            document.getElementById('command-description').innerHTML = details.description;
+            document.getElementById('command-image').src = details.image;
+
+            document.getElementById('fullscreen-view').classList.add('active');
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreen-view').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
